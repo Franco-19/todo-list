@@ -1,0 +1,10 @@
+.task-container {
+    display: flex;
+    width: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.task-name, .buttons {
+    padding: 10px;
+}
