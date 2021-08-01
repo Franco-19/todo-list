@@ -1,7 +1,7 @@
 import React from 'react'
 import './Task-styles.css'
 
-function Task({name}) {
+function Task({ name, keyTask }) {
     return (
         <div className="task-container">
             <div className="task-name">
