@@ -8,7 +8,10 @@ let id = 0;
 const CreateTask = () => {
     let handleTaskName = '';
 
-    const [task, setTask] = useState([]);
+    const [task, setTask] = useState([{
+        taskName: 'dormir',
+        id: 234
+    }]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +28,16 @@ const CreateTask = () => {
         }
 
         setTask([...task, newTask]);
-        handleTaskName = '';
+    }
+
+    const deleteTask = (nameTaskId) => {
+        console.log(task)
+
+        let filteredTaskState = task.filter(element => element.id !== nameTaskId)
+        console.log(filteredTaskState)
+        // console.log('borrando tarea...');
+
+        setTask(filteredTaskState)
     }
 
     return (
@@ -35,14 +47,15 @@ const CreateTask = () => {
                 <input type="button" value="Crear" onClick={handleSubmit} />
             </form>
 
-            {/* Mapear tareas (not done) */}
+            {/* Mapear tareas (done) */}
             <div>
                 <ul>
                     {
                         task.map(nametask => {
                             return (
                                 <li key={nametask.id}>
-                                    <Task name={nametask.taskName} keyTask={nametask.id}/>
+                                    <Task name={nametask.taskName} onDelete={() => deleteTask(nametask.id)}/>
+                                    {/* <button onClick={() => {deleteTask(nametask.id)}}>borrar tarea temporal</button> */}
                                 </li>
                             )
                         })
