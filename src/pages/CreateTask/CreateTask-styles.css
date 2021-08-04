@@ -1,0 +1,16 @@
+.todo {
+    padding: 7% 0;
+}
+
+.todo__form {
+    display: flex;
+    justify-content: center;
+}
+
+.todo__form--text-input {
+    outline: none;
+    border: none;
+    height: 26px;
+    border-radius: 4px;
+    margin: 0 10px;
+}

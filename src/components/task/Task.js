@@ -1,7 +1,7 @@
 import React from 'react'
 import './Task-styles.css'
 
-function Task({ name, onDelete}) {
+function Task({ name, onDelete, onEdit}) {
 
     // function deleteTask (nameTaskId) {
     //     console.log(actualState)    
@@ -19,7 +19,7 @@ function Task({ name, onDelete}) {
             </div>
             <div className="buttons">
                 <button onClick={onDelete}>Borrar</button>
-                <button>Editar</button>
+                <button onClick={onEdit}>Editar</button>
             </div>
         </div>
     )
