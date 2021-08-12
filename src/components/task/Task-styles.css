@@ -2,9 +2,17 @@
     display: flex;
     width: fit-content;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
 }
 
 .task-name, .buttons {
     padding: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
 }

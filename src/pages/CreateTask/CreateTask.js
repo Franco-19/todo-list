@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, createRef } from 'react';
+
+import { connect } from 'react-redux';
+import { addTask } from '../../actions/actions'
 
 /* Components */
 import Task from '../../components/task/Task'
@@ -8,66 +11,84 @@ import './CreateTask-styles.css'
 
 let id = 0;
 
-const CreateTask = () => {
+const CreateTask = ({ tasks, addTask }) => {
     let handleTaskName = '';
-    let inputValue = handleTaskName;
-    
-    const [task, setTask] = useState([]);
+
+    let textinput = React.createRef()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTask()
 
-        id += 1;
+        console.log(tasks)
 
-        e.target.reset();
-    }
-
-    const addTask = () => {
-
+         
         const newTask = {
-            taskName: handleTaskName,
+            name: handleTaskName,
             id: id
         }
-
-        setTask([...task, newTask]);
+        
+        addTask(newTask)
+        
+        id += 1;
+        
+        textinput.current.value = ''
     }
 
-    const deleteTask = (nameTaskId) => {
-        console.log(task)
+    // const addTask = () => {
 
-        let filteredTaskState = task.filter(element => element.id !== nameTaskId)
-        console.log(filteredTaskState)
-        // console.log('borrando tarea...');
+    //     const newTask = {
+    //         taskName: handleTaskName,
+    //         id: id
+    //     }
 
-        setTask(filteredTaskState)
-    }
+    //     setTask([...task, newTask]);
+    // }
 
-    const editTask = (keyId) => {
-        console.log('edit task working')
-        console.log(keyId);
+    // const deleteTask = (nameTaskId) => {
 
-        let taskToEdit = task.filter(element => element.id === keyId)
-        console.log(taskToEdit)
+    //     let filteredTaskState = task.filter(element => element.id !== nameTaskId)
+    //     console.log(filteredTaskState)
+    //     // console.log('borrando tarea...');
 
-        taskToEdit.taskName = <input type="text" />
-    }
+    //     // setTask(filteredTaskState)
+    // }
+
+    // const editTask = (keyId) => {
+    //     console.log('edit task working')
+    //     console.log(keyId);
+
+    //     let taskToEdit = task.filter(element => element.id === keyId)
+    //     console.log(taskToEdit)
+
+    //     taskToEdit.taskName = <input type="text" />
+    // }
 
     return (
         <div className="todo">
             <form onSubmit={handleSubmit} className="todo__form">
-                <input className="todo__form--text-input" type="text" placeholder="Inserte el nombre su tarea" onChange={(e) => { handleTaskName = e.target.value }} />
-                <input className="button-primary" type="reset" value="Crear" onClick={handleSubmit} />
+                <input
+                    className="todo__form--text-input"
+                    type="text"
+                    placeholder="Inserte el nombre su tarea"
+                    ref={textinput}
+                    onChange={(e) => { handleTaskName =  e.target.value }}
+                />
+                <input
+                    className="button-primary"
+                    type="submit"
+                    value="Crear"
+                    onClick={handleSubmit}
+                />
             </form>
 
             {/* Mapear tareas (done) */}
-            <div>
+            <div className="todo__task-container">
                 <ul>
                     {
-                        task.map(nametask => {
+                        tasks.map(nametask => {
                             return (
                                 <li key={nametask.id}>
-                                    <Task name={nametask.taskName} onDelete={() => deleteTask(nametask.id)} onEdit={() => editTask(nametask.id)} />
+                                    <Task name={nametask.name} idTask={nametask.id} />
                                     {/* <button onClick={() => {deleteTask(nametask.id)}}>borrar tarea temporal</button> */}
                                 </li>
                             )
@@ -79,4 +100,14 @@ const CreateTask = () => {
     )
 }
 
-export default CreateTask;
+const mapStateToProps = (state) => {
+    return {
+        tasks: state.tasks,
+    }
+}
+
+const mapDispatchToProps = {
+    addTask
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTask);

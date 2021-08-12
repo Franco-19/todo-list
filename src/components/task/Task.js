@@ -1,7 +1,10 @@
 import React from 'react'
 import './Task-styles.css'
 
-function Task({ name, onDelete, onEdit}) {
+import { connect } from 'react-redux';
+import { removeTask } from '../../actions/actions'
+
+function Task({ name, idTask, removeTask}) {
 
     // function deleteTask (nameTaskId) {
     //     console.log(actualState)    
@@ -18,11 +21,15 @@ function Task({ name, onDelete, onEdit}) {
                 {name}
             </div>
             <div className="buttons">
-                <button onClick={onDelete}>Borrar</button>
-                <button onClick={onEdit}>Editar</button>
+                <button onClick={() => removeTask(idTask)}>Borrar</button>
+                <button onClick={() => console.log('editar')}>Editar</button>
             </div>
         </div>
     )
 }
 
-export default Task;
+const mapDispatchToProps = {
+    removeTask
+}
+
+export default connect(null, mapDispatchToProps)(Task);

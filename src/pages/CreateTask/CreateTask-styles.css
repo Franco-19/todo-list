@@ -14,3 +14,13 @@
     border-radius: 4px;
     margin: 0 10px;
 }
+
+.todo__task-container {
+    width: 80%;
+    min-width: 300px
+}
+
+.todo__task-container ul {
+    list-style: none;
+    padding: 0;
+}
