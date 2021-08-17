@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react';
+import React, {createRef } from 'react';
 
 import { connect } from 'react-redux';
 import { addTask } from '../../actions/actions'
@@ -14,20 +14,19 @@ let id = 0;
 const CreateTask = ({ tasks, addTask }) => {
     let handleTaskName = '';
 
-    let textinput = React.createRef()
+    let textinput = createRef()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(tasks)
-
          
         const newTask = {
             name: handleTaskName,
             id: id
         }
-        
-        addTask(newTask)
+
+        if(handleTaskName !== ''){
+            addTask(newTask)
+        }
         
         id += 1;
         
@@ -89,7 +88,7 @@ const CreateTask = ({ tasks, addTask }) => {
                             return (
                                 <li key={nametask.id}>
                                     <Task name={nametask.name} idTask={nametask.id} />
-                                    {/* <button onClick={() => {deleteTask(nametask.id)}}>borrar tarea temporal</button> */}
+                                    {/* <button onClick={() => {console.log('editar')}}>editar tarea temporal</button> */}
                                 </li>
                             )
                         })
