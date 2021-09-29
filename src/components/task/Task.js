@@ -22,11 +22,9 @@ function Task({ name, idTask, removeTask, updateTask }) {
             id: idTask
         }
 
-        console.log(dataToUpdate)
         updateTask(dataToUpdate)
 
         setEditing(false)
-
     }
 
     function TaskName() {
@@ -47,7 +45,7 @@ function Task({ name, idTask, removeTask, updateTask }) {
     function EditTaskButton() {
         if (editing) {
             return (
-                <button onClick={() => saveNewTaskName() /* Enviar info a redux (not done)*/} >Guardar</button>
+                <button onClick={() => saveNewTaskName()} >Guardar</button>
             )
         }
         return (
