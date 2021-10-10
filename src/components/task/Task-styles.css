@@ -8,11 +8,31 @@
     margin: 10px 0;
 }
 
+.task-name {
+    text-align: start;
+}
+
 .task-name, .buttons {
     padding: 10px;
+}
+
+.crossedOutText {
+    text-decoration: line-through;
+    color: #707070;
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
+}
+
+.inputTaskContainer {
+    padding: 10px;
+}
+
+.inputTaskContainer__input {
+    background-color: var(--secondary-color);
+    font-size: 16px;
+    border: none;
+    border-bottom: solid 1px #ccc;
 }
