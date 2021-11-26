@@ -5,6 +5,7 @@ import { addTask } from '../../actions/actions'
 
 /* Components */
 import Task from '../../components/task/Task'
+import { Button, TextField } from '@mui/material'
 
 /* Styles */
 import './CreateTask-styles.css'
@@ -65,19 +66,27 @@ const CreateTask = ({ tasks, addTask }) => {
     return (
         <div className="todo">
             <form onSubmit={handleSubmit} className="todo__form">
-                <input
+                <TextField
                     className="todo__form--text-input"
-                    type="text"
-                    placeholder="Inserte el nombre su tarea"
+                    // type="text"
+                    color="secondary"
+                    variant="standard"
+                    label="Inserte el nombre su tarea"
                     ref={textinput}
                     onChange={(e) => { handleTaskName =  e.target.value }}
                 />
-                <input
-                    className="button-primary"
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    sx={{
+                        color: 'white',
+                        height: 35,
+                    }}
+                    size="small"
                     type="submit"
                     value="Crear"
                     onClick={handleSubmit}
-                />
+                >Crear</Button>
             </form>
 
             {/* Mapear tareas (done) */}

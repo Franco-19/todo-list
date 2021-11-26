@@ -5,19 +5,19 @@
 .todo__form {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .todo__form--text-input {
-    outline: none;
-    border: none;
-    height: 26px;
     border-radius: 4px;
     margin: 0 10px;
 }
 
 .todo__task-container {
     width: 80%;
-    min-width: 300px
+    /* min-width: 300px */
+    margin: auto;
 }
 
 .todo__task-container ul {

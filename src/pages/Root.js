@@ -23,7 +23,7 @@ const Root = () => {
     return (
         <Router>
             <header className="header">
-                <h1 className="header__title">todo list v0.5</h1>
+                <h1 className="header__title">todo list <span className="header__title--version">v0.8</span></h1>
                 <div className="header__menu">
                     <ul>
                         {/* <li>

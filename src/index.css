@@ -1,8 +1,11 @@
 :root {
-  --primary-color: #FDEFEF;
+  /* for dark mode */
+  --primary-color: #19222a;
+  --secondary-color: #EF476F;
+  --tertiary-color: #F0F0C9;
   --primary-color-hover: #f3e3e3;
-  --secondary-color: #F4DFD0;
-  --primary-font-family: 'Roboto', sans-serif;
+  --primary-font-family: 'Raleway', sans-serif;
+  --primary-font-color: #d9d9d9;
 }
 
 body {
@@ -12,6 +15,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--primary-font-color);
   background-color: var(--primary-color);
 }
 

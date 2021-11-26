@@ -3,9 +3,8 @@ import './Task-styles.css'
 
 import { connect } from 'react-redux';
 import { removeTask, updateTask } from '../../actions/actions'
-import Checkbox from '@mui/material/Checkbox'
-// import Done from '@mui/icons-material/Done'
-import { CheckCircle, CheckCircleOutline } from '@mui/icons-material';
+import { Checkbox, Button, Input } from '@mui/material'
+import { CheckCircle, CheckCircleOutline, Delete, Save  } from '@mui/icons-material';
 
 function Task({ name, idTask, removeTask, updateTask }) {
 
@@ -36,7 +35,12 @@ function Task({ name, idTask, removeTask, updateTask }) {
         if (editing) {
             return (
                 <div className="inputTaskContainer">
-                    <input className="inputTaskContainer__input" type="text" defaultValue={newTaskName} onChange={(e) => handleName = e.target.value} />
+                    <Input 
+                        className="inputTaskContainer__input"
+                        color="secondary"
+                        defaultValue={newTaskName} 
+                        onChange={(e) => handleName = e.target.value} 
+                    />
                 </div>
             )
         }
@@ -46,16 +50,26 @@ function Task({ name, idTask, removeTask, updateTask }) {
         }
 
         return (
-            <div className={taskNameClassValue} onClick={() => setEditing(true)}>
+            <p className={taskNameClassValue} onClick={() => setEditing(true)}>
                 {name}
-            </div>
+            </p>
         )
     }
 
     function EditTaskButton() {
         if (editing) {
             return (
-                <button onClick={() => saveNewTaskName()} >Guardar</button>
+                <Button
+                    size="small"
+                    variant="text"
+                    sx={{
+                        color: 'white'
+                    }}
+                    startIcon={<Save />}
+                    onClick={() => saveNewTaskName()}
+                >
+                    Guardar
+                </Button>
             )
         }
         return (
@@ -68,11 +82,28 @@ function Task({ name, idTask, removeTask, updateTask }) {
 
     return (
         <div className="task-container">
-            <Checkbox color="success" icon={<CheckCircleOutline />} checkedIcon={<CheckCircle />} onChange={() => {crossedOut ? setCrossedOut(false) : setCrossedOut(true)}} />
+            <Checkbox 
+                color="success"
+                icon={<CheckCircleOutline />}
+                checkedIcon={<CheckCircle />}
+                onChange={() => {crossedOut ? setCrossedOut(false) : setCrossedOut(true)}} 
+            />
             <TaskName />
             <div className="buttons">
-                <button onClick={() => removeTask(idTask)}>Borrar</button>
-                <EditTaskButton />
+                {/* <button onClick={() => removeTask(idTask)}>Borrar</button> */}
+                <Button
+                    size="small"
+                    startIcon={<Delete />}
+                    variant="text"
+                    color="secondary"
+                    sx={{
+                        color:"white",
+                    }}
+                    onClick={() => removeTask(idTask)}
+                >
+                    Delete
+                </Button >
+                <EditTaskButton  />
             </div>
         </div>
     )
