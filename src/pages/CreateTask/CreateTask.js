@@ -13,6 +13,11 @@ import './CreateTask-styles.css'
 let id = 0;
 
 const CreateTask = ({ tasks, addTask }) => {
+
+    const saveTaskOnLocalStorage = () => {
+        console.log('Guardando...');
+    }
+
     let handleTaskName = '';
 
     let textinput = createRef()
@@ -26,42 +31,18 @@ const CreateTask = ({ tasks, addTask }) => {
         }
 
         if(handleTaskName !== ''){
-            addTask(newTask)
+            try {
+                addTask(newTask)
+                saveTaskOnLocalStorage();
+            } catch (error) {
+                console.error(error)                
+            }
         }
         
         id += 1;
         
-        textinput.current.value = ''
+        textinput.current.lastChild.lastChild.value = ''
     }
-
-    // const addTask = () => {
-
-    //     const newTask = {
-    //         taskName: handleTaskName,
-    //         id: id
-    //     }
-
-    //     setTask([...task, newTask]);
-    // }
-
-    // const deleteTask = (nameTaskId) => {
-
-    //     let filteredTaskState = task.filter(element => element.id !== nameTaskId)
-    //     console.log(filteredTaskState)
-    //     // console.log('borrando tarea...');
-
-    //     // setTask(filteredTaskState)
-    // }
-
-    // const editTask = (keyId) => {
-    //     console.log('edit task working')
-    //     console.log(keyId);
-
-    //     let taskToEdit = task.filter(element => element.id === keyId)
-    //     console.log(taskToEdit)
-
-    //     taskToEdit.taskName = <input type="text" />
-    // }
 
     return (
         <div className="todo">
@@ -69,6 +50,7 @@ const CreateTask = ({ tasks, addTask }) => {
                 <TextField
                     className="todo__form--text-input"
                     // type="text"
+                    inputProps={{style: { textAlign: 'center'}}}
                     color="secondary"
                     variant="standard"
                     label="Inserte el nombre su tarea"

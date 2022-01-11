@@ -37,6 +37,7 @@ function Task({ name, idTask, removeTask, updateTask }) {
                 <div className="inputTaskContainer">
                     <Input 
                         className="inputTaskContainer__input"
+                        inputProps={{style: { textAlign: 'center'}}}
                         color="secondary"
                         defaultValue={newTaskName} 
                         onChange={(e) => handleName = e.target.value} 

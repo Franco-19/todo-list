@@ -17,6 +17,4 @@ const todoReducer = createReducer(initialState, (builder => {
         })
 }))
 
-export default todoReducer
-
-// state.tasks.slice(action.payload.id, 1, action.payload)
+export default todoReducer;
