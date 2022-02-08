@@ -16,6 +16,11 @@ const CreateTask = ({ tasks, addTask }) => {
 
     const saveTaskOnLocalStorage = () => {
         console.log('Guardando...');
+        try {
+            localStorage.setItem('TODOS_V1', JSON.stringify(tasks))
+        } catch (error) {
+            console.log('ha ocurrido un error :(' + error);
+        }
     }
 
     let handleTaskName = '';
@@ -40,7 +45,7 @@ const CreateTask = ({ tasks, addTask }) => {
         }
         
         id += 1;
-        
+
         textinput.current.lastChild.lastChild.value = ''
     }
 
